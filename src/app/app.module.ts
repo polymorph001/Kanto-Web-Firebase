@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule} from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
+import { LoadingAnimateModule, LoadingAnimateService } from 'ng2-loading-animate';
+import { LottieAnimationViewModule } from 'lottie-angular2';
 
 import { RoundPipe } from './pipes/round.pipe';
 
@@ -21,6 +23,7 @@ import { EmployeesComponent }  from './components/employees.component';
 
 import { routing }  from './app.routing';
 import { CreateLunchComponent } from './components/create-lunch/create-lunch.component';
+import { TestComponent } from './test/test.component';
 
 // Must export the config
 export const firebaseConfig = {
@@ -37,10 +40,14 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     DatepickerModule.forRoot(), MomentModule, TypeaheadModule.forRoot(),
     DropdownModule.forRoot(), ButtonsModule.forRoot(), AlertModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    LoadingAnimateModule.forRoot(),
+    LottieAnimationViewModule.forRoot()
   ],
-  declarations: [ AppComponent, HomeComponent, AboutComponent, EmployeesComponent, CreateLunchComponent, RoundPipe ],
+  declarations: [ AppComponent, HomeComponent, AboutComponent, EmployeesComponent, CreateLunchComponent,
+    TestComponent, RoundPipe ],
   bootstrap:    [ AppComponent ],
+  providers: [LoadingAnimateService]
 })
 
 export class AppModule {

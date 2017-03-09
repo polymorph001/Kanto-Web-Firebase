@@ -5,14 +5,17 @@
   {{error}}
 </div>
 
-<div class="container">
+<div class="container modal-dialog">  
     <h1>Create Lunch Entry</h1>
       <div class="form-group">
-        <label for="date">Date</label>
-        <datepicker name="date" id="date" [(ngModel)]="dt" [minDate]="minDate" [showWeeks]="true"></datepicker>
+        <label for="date">When is LunchClub?</label>
+        <div id="date">
+          <pre class="card card-block card-header"><em *ngIf="dt">{{ dt | date:'fullDate'}}</em></pre>
+          <button class="btn btn-success" (click)="showDateModal()">Select Date</button>
+        </div>
       </div>
       <div class="form-group">
-        <label for="chef">Chef</label>
+        <label for="chef">Who is Cooking?</label>
         <input [(ngModel)]="chef"
                [typeahead]="employees"
                typeaheadOptionField="FirstName"
@@ -22,6 +25,23 @@
                class="form-control">
       </div>
       <button class="btn btn-success" (click)="createLunch()">Create</button>
+</div>
+
+<div bsModal #datePickerModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="Date Picker" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Select Date</h4>
+      </div>
+      <div class="modal-body">
+        <datepicker name="date" id="date" [(ngModel)]="dt" [minDate]="minDate" [showWeeks]="true"></datepicker>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" (click)="datePickerModal.hide()">Select</button>
+        <button type="button" class="btn btn-secondary" (click)="datePickerModal.hide()">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div bsModal #lunchCreatedModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -35,6 +55,8 @@
       </div>
       <div class="modal-body">
         Lunch Entry Created!
+      </div>
+      <div class="modal-footer">
         <button class="btn btn-success" (click)="hideLunchCreatedModal()">OK</button>
       </div>
     </div>
