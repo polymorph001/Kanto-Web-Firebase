@@ -2,7 +2,7 @@ import { NgModule}      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule} from '@angular/http';
 import { FormsModule } from '@angular/forms';
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 import { LoadingAnimateModule, LoadingAnimateService } from 'ng2-loading-animate';
 import { LottieAnimationViewModule } from 'lottie-angular2';
 
@@ -24,6 +24,7 @@ import { EmployeesComponent }  from './components/employees.component';
 import { routing }  from './app.routing';
 import { CreateLunchComponent } from './components/create-lunch/create-lunch.component';
 import { TestComponent } from './test/test.component';
+import { LoginComponent } from './components/login/login.component';
 
 // Must export the config
 export const firebaseConfig = {
@@ -33,11 +34,15 @@ export const firebaseConfig = {
   storageBucket: "helena-4a3f6.appspot.com",
   messagingSenderId: "558644249736"
 };
+const firebaseAuthConfig = {
+  provider: AuthProviders.Password,
+  method: AuthMethods.Password
+};
 
 @NgModule({
   imports:[
     BrowserModule, FormsModule, HttpModule, routing,
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),
     DatepickerModule.forRoot(), MomentModule, TypeaheadModule.forRoot(),
     DropdownModule.forRoot(), ButtonsModule.forRoot(), AlertModule.forRoot(),
     ModalModule.forRoot(),
@@ -45,7 +50,7 @@ export const firebaseConfig = {
     LottieAnimationViewModule.forRoot()
   ],
   declarations: [ AppComponent, HomeComponent, AboutComponent, EmployeesComponent, CreateLunchComponent,
-    TestComponent, RoundPipe ],
+    TestComponent, RoundPipe, LoginComponent ],
   bootstrap:    [ AppComponent ],
   providers: [LoadingAnimateService]
 })
