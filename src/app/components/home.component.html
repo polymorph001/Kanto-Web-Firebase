@@ -18,13 +18,13 @@
           <div class="card-header">
             Lunch Club Event
           </div>
-          <h4 class="card-title">{{ lunch.chef }} <small>will be cooking</small></h4>
+          <h4 class="card-title">{{ user.FirstName }} <small>will be cooking</small></h4>
           <h6 class="card-subtitle mb-2 text-muted">Date: {{ lunch.date | amDateFormat: 'DD-MM-YYYY' }}</h6>
           <p class="card-text">Will you be attending?</p>
           <a href="#" class="card-link">Yes</a>
           <a href="#" class="card-link">No</a>
           <div class="card-footer text-muted">
-            RSVP BEFORE
+            Event in: {{ (lunch.date | amDifference: today :'days' : true) | round }} days
         </div>
         </div>
       </div>

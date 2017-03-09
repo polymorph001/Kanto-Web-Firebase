@@ -14,6 +14,7 @@ import 'rxjs/add/observable/of';
 })
 export class CreateLunchComponent implements OnInit {
   @ViewChild('lunchCreatedModal') public lunchCreatedModal:ModalDirective;
+  @ViewChild('datePickerModal') public datePickerModal:ModalDirective;
 
   public error: any;
 
@@ -51,7 +52,7 @@ export class CreateLunchComponent implements OnInit {
       return;
     }
 
-    this.lunchService.createLunch(this.dt, this.chef);
+    this.lunchService.createLunch(this.dt, employee);
     this.showLuchCreatedModal();
   }
 
@@ -64,4 +65,9 @@ export class CreateLunchComponent implements OnInit {
 
       this.router.navigate(['/']);
   }
+
+  public showDateModal() {
+    this.datePickerModal.show();
+  }
+
 }

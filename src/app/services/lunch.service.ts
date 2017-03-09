@@ -9,9 +9,9 @@ export class LunchService {
 
   }
 
-  createLunch(date:Date, chef: string) {
+  createLunch(date:Date, employee: any) {
     const lunches = this.af.database.list('/lunches');
-    lunches.push({ date: date.getTime(), chef: chef});
+    lunches.push({ date: date.getTime(), userId: employee.$key });
   }
 
   getNextLunch() {
@@ -22,5 +22,4 @@ export class LunchService {
       }
     }).first();
   }
-
 }

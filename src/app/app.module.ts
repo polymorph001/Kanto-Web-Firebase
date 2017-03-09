@@ -6,6 +6,8 @@ import { AngularFireModule } from 'angularfire2';
 import { LoadingAnimateModule, LoadingAnimateService } from 'ng2-loading-animate';
 import { LottieAnimationViewModule } from 'lottie-angular2';
 
+import { RoundPipe } from './pipes/round.pipe';
+
 import { ModalModule } from 'ng2-bootstrap/modal';
 import { ButtonsModule } from 'ng2-bootstrap/buttons';
 import { DatepickerModule } from 'ng2-bootstrap/datepicker';
@@ -42,7 +44,8 @@ export const firebaseConfig = {
     LoadingAnimateModule.forRoot(),
     LottieAnimationViewModule.forRoot()
   ],
-  declarations: [ AppComponent, HomeComponent, AboutComponent, EmployeesComponent, CreateLunchComponent, TestComponent ],
+  declarations: [ AppComponent, HomeComponent, AboutComponent, EmployeesComponent, CreateLunchComponent,
+    TestComponent, RoundPipe ],
   bootstrap:    [ AppComponent ],
   providers: [LoadingAnimateService]
 })
