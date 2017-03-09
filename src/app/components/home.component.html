@@ -16,12 +16,19 @@
           <div class="card-header">
             Lunch Club Event
           </div>
-          <h4 class="card-title">{{ user.FirstName }} <small>will be cooking</small></h4>
+          <h4 class="card-title">{{ lunch.chef.FirstName }} <small>will be cooking</small></h4>
           <h6 class="card-subtitle mb-2 text-muted">Date: {{ lunch.date | amDateFormat: 'DD-MM-YYYY' }}</h6>
-          <p class="card-text">Will you be attending?</p>
-          <a href="#" (click)="acceptLunchInvite()" class="card-link">Yes</a>
-          <a href="#" (click)="rejectLunchInvite()" class="card-link">No</a>
-          <!-- <button class="btn btn-success" (click)="createLunch()">Create</button> -->
+          <div *ngIf="lunch.users">
+            <p class="card-text">
+              {{ lunch.users.accepted }} users attending<br/>
+              {{ lunch.users.rejected }} users not attending
+            </p>
+          </div>
+          <div *ngIf="lunch.users == null">
+            <p class="card-text">Will you be attending?</p>
+            <a href="#" (click)="acceptLunchInvite()" class="card-link">Yes</a>
+            <a href="#" (click)="rejectLunchInvite()" class="card-link">No</a>
+          </div>
           <div class="card-footer text-muted">
             Event in: {{ (lunch.date | amDifference: today :'days' : true) | round }} days
         </div>

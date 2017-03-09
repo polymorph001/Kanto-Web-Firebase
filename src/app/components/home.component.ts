@@ -21,7 +21,6 @@ import { UsersServices } from '../services/users.service';
   providers: [ LunchService, UsersServices ]
 })
 export class HomeComponent {
-  public user: any;
   public lunch: any;
 
   public lottieConfig: Object;
@@ -31,18 +30,16 @@ export class HomeComponent {
   constructor( private lunchService: LunchService,
     private usersServices: UsersServices) {
       this.lunchService.getNextLunch()
-        .subscribe (res => {
-          // TODO MARK AS NOT LOADING
-          if (res != null && res[0] != null) {
-            let ll = res[0];
-
-            this.usersServices.getUserForKey(ll.userId)
-              .subscribe (user => {
-                console.log(user);
-                this.user = user;
-                this.lunch = ll;
-            });
-          }
+        .filter((lunch) => lunch != null)
+        .flatMap((lunch) => {
+          return this.usersServices.getUserForKey(lunch.userId)
+            .map(user => {
+              lunch.chef = user;
+              return lunch;
+          });
+        })
+        .subscribe((ll) => {
+          this.lunch = ll;
         });
 
         this.lottieConfig = {
@@ -59,8 +56,7 @@ export class HomeComponent {
 
   acceptLunchInvite() {
     // Mark in DB accept
-    alert("ALL GOOD");
-    //this.lunchService.
+    this.lunchService.acceptLunchInvite(this.lunch, this.lunch.user);
   }
 
    handleAnimation(anim: any) {
