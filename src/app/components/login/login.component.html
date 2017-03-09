@@ -1,0 +1,25 @@
+<div *ngIf="error" class="alert alert-warning" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  {{error}}
+</div>
+
+<div class="modal-dialog">
+  <div class="loginmodal-container">
+    <h1>Login to Kanto</h1><br>
+
+    <form role="form" (submit)="login($event, email.value, password.value)">
+      <div class="form-group">
+        <label for="email" class="sr-only">Email address</label>
+        <input #email type="email" id="email" class="form-control" placeholder="Email address">
+      </div>
+      <div class="form-group">
+        <label for="password" class="sr-only">Password</label>
+        <input #password type="password" id="password" class="form-control" placeholder="Password" required="">
+      </div>
+      <button class="btn btn-md btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+    <td [hidden]="!authed">Successfully logged in!</td>
+    <td [hidden]="authed">Not logged in</td>
+  </div>
+</div>

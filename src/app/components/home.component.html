@@ -1,18 +1,16 @@
 <div class="container">
-  <div *ngIf="lunch == null" class="row col-centered">
-    <div class="col-3"></div>
-    <div class="col-6">
+  <div *ngIf="lunch == null" class="row">
+    <div class="col-md-6 offset-md-3">
       <div class="card text-center">
         <div class="card-block">
           <h4 class="card-title">Loading...</h4>
         </div>
       </div>
     </div>
-    <div class="col-3"></div>
   </div>
-  <div *ngIf="lunch" class="row col-centered">
-    <div class="col-3"></div>
-    <div class="col-6">
+
+  <div *ngIf="lunch" class="row">
+    <div class="col-md-6 offset-md-3 offset-sm-1">
       <div class="card text-center">
         <div class="card-block">
           <div class="card-header">
@@ -21,19 +19,19 @@
           <h4 class="card-title">{{ user.FirstName }} <small>will be cooking</small></h4>
           <h6 class="card-subtitle mb-2 text-muted">Date: {{ lunch.date | amDateFormat: 'DD-MM-YYYY' }}</h6>
           <p class="card-text">Will you be attending?</p>
-          <a href="#" class="card-link">Yes</a>
-          <a href="#" class="card-link">No</a>
+          <a href="#" (click)="acceptLunchInvite()" class="card-link">Yes</a>
+          <a href="#" (click)="rejectLunchInvite()" class="card-link">No</a>
+          <!-- <button class="btn btn-success" (click)="createLunch()">Create</button> -->
           <div class="card-footer text-muted">
             Event in: {{ (lunch.date | amDifference: today :'days' : true) | round }} days
         </div>
         </div>
       </div>
-      <div class="col-3"></div>
     </div>
   </div>
 </div>
 <app-test></app-test>
-            
+
 
 <lottie-animation-view
                     [options]="lottieConfig"

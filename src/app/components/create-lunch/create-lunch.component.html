@@ -5,26 +5,30 @@
   {{error}}
 </div>
 
-<div class="container modal-dialog">  
-    <h1>Create Lunch Entry</h1>
-      <div class="form-group">
-        <label for="date">When is LunchClub?</label>
-        <div id="date">
-          <pre class="card card-block card-header"><em *ngIf="dt">{{ dt | date:'fullDate'}}</em></pre>
-          <button class="btn btn-success" (click)="showDateModal()">Select Date</button>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h1>Create Lunch Entry</h1>
+        <div class="form-group">
+          <label for="date">When is LunchClub?</label>
+          <div id="date">
+            <pre class="card card-block card-header"><em *ngIf="dt">{{ dt | date:'fullDate'}}</em></pre>
+            <button class="btn btn-success" (click)="showDateModal()">Select Date</button>
+          </div>
         </div>
+        <div class="form-group">
+          <label for="chef">Who is Cooking?</label>
+          <input [(ngModel)]="chef"
+                 [typeahead]="employees"
+                 typeaheadOptionField="FirstName"
+                 placeholder="Start typing"
+                 id="chef"
+                 name="chef"
+                 class="form-control">
+        </div>
+        <button class="btn btn-success" (click)="createLunch()">Create</button>
       </div>
-      <div class="form-group">
-        <label for="chef">Who is Cooking?</label>
-        <input [(ngModel)]="chef"
-               [typeahead]="employees"
-               typeaheadOptionField="FirstName"
-               placeholder="Select a Chef"
-               id="chef"
-               name="chef"
-               class="form-control">
-      </div>
-      <button class="btn btn-success" (click)="createLunch()">Create</button>
+    </div>
 </div>
 
 <div bsModal #datePickerModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="Date Picker" aria-hidden="true">
@@ -33,7 +37,7 @@
       <div class="modal-header">
         <h4 class="modal-title pull-left">Select Date</h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body align-self-center">
         <datepicker name="date" id="date" [(ngModel)]="dt" [minDate]="minDate" [showWeeks]="true"></datepicker>
       </div>
       <div class="modal-footer">

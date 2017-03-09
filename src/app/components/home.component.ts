@@ -32,14 +32,17 @@ export class HomeComponent {
     private usersServices: UsersServices) {
       this.lunchService.getNextLunch()
         .subscribe (res => {
-          let ll = res[0];
-          console.log(ll)
-          this.usersServices.getUserForKey(ll.userId)
-            .subscribe (user => {
-              console.log(user);
-              this.user = user;
-              this.lunch = ll;
+          // TODO MARK AS NOT LOADING
+          if (res != null && res[0] != null) {
+            let ll = res[0];
+
+            this.usersServices.getUserForKey(ll.userId)
+              .subscribe (user => {
+                console.log(user);
+                this.user = user;
+                this.lunch = ll;
             });
+          }
         });
 
         this.lottieConfig = {
@@ -47,6 +50,17 @@ export class HomeComponent {
           autoplay: true,
           loop: true
         };
+  }
+
+  rejectLunchInvite() {
+    // Mark in DB Reject
+    alert("NOT COOL MAN");
+  }
+
+  acceptLunchInvite() {
+    // Mark in DB accept
+    alert("ALL GOOD");
+    //this.lunchService.
   }
 
    handleAnimation(anim: any) {
