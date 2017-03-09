@@ -3,8 +3,7 @@ import { UsersServices } from '../services/users.service';
 
 @Component({
   selector: 'employees',
-  templateUrl: 'employees.component.html',
-  providers: [ UsersServices ]
+  templateUrl: 'employees.component.html'
 })
 export class EmployeesComponent {
       users: Users[];

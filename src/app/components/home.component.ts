@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { LunchService } from '../services/lunch.service';
 import { UsersServices } from '../services/users.service';
 
+export enum LunchState {unknown = 1, accepted = 2, rejected = 3}
+
 @Component({
   selector: 'home',
   templateUrl: 'home.component.html',
@@ -18,10 +20,14 @@ import { UsersServices } from '../services/users.service';
       margin-bottom: 10px;
     }
   `],
-  providers: [ LunchService, UsersServices ]
+  providers: [ LunchService ]
 })
 export class HomeComponent {
   public lunch: any;
+
+  // allows you to use AgentStatus in template
+  public LunchState = LunchState;
+  public lunchState: LunchState = LunchState.unknown;
 
   public lottieConfig: Object;
   private anim: any;
@@ -32,11 +38,23 @@ export class HomeComponent {
       this.lunchService.getNextLunch()
         .filter((lunch) => lunch != null)
         .flatMap((lunch) => {
+          // Get the person cooking
           return this.usersServices.getUserForKey(lunch.userId)
             .map(user => {
               lunch.chef = user;
               return lunch;
           });
+        })
+        .map((lunch) => {
+          // Check what logged in user accept/reject state is
+          this.lunchState = LunchState.unknown;
+          if (lunch.users != null && lunch.users.length > 0) {
+            let me = lunch.users.find(e => e.userId == this.usersServices.uid);
+            if (me != null) {
+              this.lunchState = me.accept ? LunchState.accepted : LunchState.rejected;
+            }
+          }
+          return lunch;
         })
         .subscribe((ll) => {
           this.lunch = ll;
@@ -56,7 +74,7 @@ export class HomeComponent {
 
   acceptLunchInvite() {
     // Mark in DB accept
-    this.lunchService.acceptLunchInvite(this.lunch, this.lunch.user);
+    this.lunchService.acceptLunchInvite(this.lunch, this.usersServices.uid);
   }
 
    handleAnimation(anim: any) {

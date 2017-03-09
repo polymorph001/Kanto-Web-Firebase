@@ -16,6 +16,8 @@ import { TypeaheadModule } from 'ng2-bootstrap/typeahead';
 import { DropdownModule } from 'ng2-bootstrap/dropdown';
 import { AlertModule } from 'ng2-bootstrap/alert';
 
+import { UsersServices } from './services/users.service';
+
 import { AppComponent }  from './app.component';
 import { HomeComponent }  from './components/home.component';
 import { AboutComponent }  from './components/about.component';
@@ -52,7 +54,7 @@ const firebaseAuthConfig = {
   declarations: [ AppComponent, HomeComponent, AboutComponent, EmployeesComponent, CreateLunchComponent,
     TestComponent, RoundPipe, LoginComponent ],
   bootstrap:    [ AppComponent ],
-  providers: [LoadingAnimateService]
+  providers: [ LoadingAnimateService, UsersServices ]
 })
 
 export class AppModule {

@@ -10,7 +10,7 @@ import 'rxjs/add/observable/of';
   selector: 'app-create-lunch',
   templateUrl: './create-lunch.component.html',
   styleUrls: ['./create-lunch.component.css'],
-  providers: [ UsersServices, LunchService ]
+  providers: [ LunchService ]
 })
 export class CreateLunchComponent implements OnInit {
   @ViewChild('lunchCreatedModal') public lunchCreatedModal:ModalDirective;
