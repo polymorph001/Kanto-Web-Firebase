@@ -4,6 +4,8 @@ import { HttpModule} from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 
+import { RoundPipe } from './pipes/round.pipe';
+
 import { ModalModule } from 'ng2-bootstrap/modal';
 import { ButtonsModule } from 'ng2-bootstrap/buttons';
 import { DatepickerModule } from 'ng2-bootstrap/datepicker';
@@ -37,7 +39,7 @@ export const firebaseConfig = {
     DropdownModule.forRoot(), ButtonsModule.forRoot(), AlertModule.forRoot(),
     ModalModule.forRoot()
   ],
-  declarations: [ AppComponent, HomeComponent, AboutComponent, EmployeesComponent, CreateLunchComponent ],
+  declarations: [ AppComponent, HomeComponent, AboutComponent, EmployeesComponent, CreateLunchComponent, RoundPipe ],
   bootstrap:    [ AppComponent ],
 })
 

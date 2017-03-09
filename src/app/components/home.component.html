@@ -18,49 +18,17 @@
           <div class="card-header">
             Lunch Club Event
           </div>
-          <h4 class="card-title">{{ lunch.chef }} <small>will be cooking</small></h4>
+          <h4 class="card-title">{{ user.FirstName }} <small>will be cooking</small></h4>
           <h6 class="card-subtitle mb-2 text-muted">Date: {{ lunch.date | amDateFormat: 'DD-MM-YYYY' }}</h6>
           <p class="card-text">Will you be attending?</p>
           <a href="#" class="card-link">Yes</a>
           <a href="#" class="card-link">No</a>
           <div class="card-footer text-muted">
-            RSVP BEFORE
+            Event in: {{ (lunch.date | amDifference: today :'days' : true) | round }} days
         </div>
         </div>
       </div>
       <div class="col-3"></div>
     </div>
   </div>
-
 </div>
-
-
-<!--<h1>{{name}}</h1>
-<p>Your email is {{email}}</p>
-<p>Address is: {{address.street}}, {{address.city}}, {{address.country}} </p>
-<button (click)="toggleHobbies()">{{showHobbies ? "Hide Hobbies" : "Show Hobbies"}}</button>
-<div *ngIf="showHobbies">Hobbies:
-  <ul>
-    <li *ngFor="let hobby of hobbies; let i = index"> {{hobby}} <button (click)="deleteHobby(i)">Delete Hobby</button></li>
-  </ul>
-  <form (submit)="addHobby(hobby.value)">
-    <label> Add Hobby: </label> <br />
-    <input type="text" #hobby /><br />
-  </form>
-</div>
-<form>
-  <label> Name: </label> <br />
-  <input type="text" name="name" [(ngModel)]="name"><br />
-  <label> Email: </label> <br />
-  <input type="text" name="email" [(ngModel)]="email"><br />
-  <label> Street: </label> <br />
-  <input type="text" name="address.street" [(ngModel)]="address.street"><br />
-  <label> City: </label> <br />
-  <input type="text" name="address.city" [(ngModel)]="address.city"><br />
-</form>
-<hr />
-<h3>Posts </h3>
-<div *ngFor="let post of posts">
-  <h4>{{post.title}}</h4>
-  <p>{{post.body}}</p>
-</div>-->

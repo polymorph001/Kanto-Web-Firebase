@@ -50,8 +50,8 @@ export class CreateLunchComponent implements OnInit {
       this.error = "Please select a valid chef";
       return;
     }
-
-    this.lunchService.createLunch(this.dt, this.chef);
+    
+    this.lunchService.createLunch(this.dt, employee);
     this.showLuchCreatedModal();
   }
 
