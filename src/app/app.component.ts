@@ -5,8 +5,7 @@ import { Router } from "@angular/router";
 @Component({
   selector: 'my-app',
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component.css'],
-  providers: [ UsersServices ]
+  styleUrls: ['app.component.css']
 })
 
 export class AppComponent {
@@ -29,6 +28,7 @@ export class AppComponent {
            // Set the Display Name and Email so we can attribute messages to them
            this.usersServices.displayName = auth.auth.email;
            this.usersServices.email = auth.auth.email;
+           this.usersServices.uid = auth.uid;
 
            this.isLoggedIn = true;
            //this.router.navigate(['']);

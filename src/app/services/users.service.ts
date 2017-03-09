@@ -3,11 +3,11 @@ import {Injectable} from '@angular/core';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 
 @Injectable()
-
 export class UsersServices {
   public user: FirebaseObjectObservable<any>;
   public displayName: string;
   public email: string;
+  public uid: string;
 
   constructor(public af: AngularFire) {
     this.af.auth.subscribe(
