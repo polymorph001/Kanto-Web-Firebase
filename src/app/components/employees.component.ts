@@ -19,5 +19,4 @@ export class EmployeesComponent {
 interface Users {
     FirstName: string;
     LastName: string;
-
 }

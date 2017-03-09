@@ -1,12 +1,37 @@
-<h1>Welcome {{name}}</h1>
+<div class="container">
+  <div *ngIf="lunch == null" class="row col-centered">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <div class="card text-center">
+        <div class="card-block">
+          <h4 class="card-title">Loading...</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-3"></div>
+  </div>
+  <div *ngIf="lunch" class="row col-centered">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <div class="card text-center">
+        <div class="card-block">
+          <div class="card-header">
+            Lunch Club Event
+          </div>
+          <h4 class="card-title">{{ lunch.chef }} <small>will be cooking</small></h4>
+          <h6 class="card-subtitle mb-2 text-muted">Date: {{ lunch.date | amDateFormat: 'DD-MM-YYYY' }}</h6>
+          <p class="card-text">Will you be attending?</p>
+          <a href="#" class="card-link">Yes</a>
+          <a href="#" class="card-link">No</a>
+          <div class="card-footer text-muted">
+            RSVP BEFORE
+        </div>
+        </div>
+      </div>
+      <div class="col-3"></div>
+    </div>
+  </div>
 
-<p>Next Lunchclub is on: {{date}} </p>
-<p>{{chef}} will be cooking</p>
-
-<div>
-  <h3>Will you be attending?</h3>
-  <button>YES</button>
-  <button>NO</button>
 </div>
 
 
