@@ -42,7 +42,7 @@ export const firebaseConfig = {
     LoadingAnimateModule.forRoot(),
     LottieAnimationViewModule.forRoot()
   ],
-  declarations: [ AppComponent, HomeComponent, AboutComponent, EmployeesComponent, CreateLunchComponent, TestComponent ],
+  declarations: [ AppComponent, HomeComponent, AboutComponent, EmployeesComponent, CreateLunchComponent ],
   bootstrap:    [ AppComponent ],
   providers: [LoadingAnimateService]
 })
