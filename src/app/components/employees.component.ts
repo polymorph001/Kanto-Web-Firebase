@@ -3,15 +3,7 @@ import { UsersServices } from '../services/users.service';
 
 @Component({
   selector: 'employees',
-  template: `
-  <h1>List of all Employees</h1>
-  
-  <ul>
-    <li *ngFor="let user of users"> {{user.FirstName}} {{user.MiddleName}} {{user.LastName}} </li>
-
-
-  </ul>
-  `,
+  templateUrl: 'employees.component.html',
   providers: [UsersServices]
 })
 export class EmployeesComponent {

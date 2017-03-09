@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
 import { PostsServices } from '../services/posts.service';
 
-
-
 @Component({
-moduleId: module.id,
   selector: 'home',
   templateUrl: 'home.component.html',
-  providers: [PostsServices]
+  providers: [ PostsServices ]
 })
 export class HomeComponent {
   name: string;
