@@ -1,16 +1,14 @@
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
-import 'rxjs/add/operator/map';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 @Injectable()
 
 export class UsersServices {
-    constructor(private http: Http) {
-        console.log('UsersServices Initialised ...');
+    constructor(private af: AngularFire) {
+
     }
     getUsers() {
-        return this.http.get('https://helena-4a3f6.firebaseio.com/users.json')
-        .map(res => res.json());
+        return this.af.database.list('/users');
     }
 
 }
