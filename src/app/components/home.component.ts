@@ -43,7 +43,7 @@ export class HomeComponent {
         });
 
         this.lottieConfig = {
-          path: './src/app/components/bounching_ball.json',
+          path: 'assets/bounching_ball.json',
           autoplay: true,
           loop: true
         };
