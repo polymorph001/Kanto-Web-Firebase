@@ -1,4 +1,25 @@
-<div *ngIf="lunch == null" class="row">
+<nav class="navbar navbar-toggleable-md navbar-inverse sticky-top">
+  
+  <img (click)="isCollapsed = !isCollapsed" src="/assets/images/pictureprofile.svg" width="30" height="30" class="d-inline-block align-top  text-right"
+    alt="" />
+
+  <div (collapsed)="collapsed($event)" (expanded)="expanded($event)" [collapse]="isCollapsed" class="row">
+    
+    
+    <ul class="nav navbar-nav navbar-right">
+      <li *ngIf="isLoggedIn" class="nav-item">
+        Welcome <a class="nav-link" href="#">{{ (usersServices.userInfo)?.FirstName }} {{ (usersServices.userInfo)?.LastName }}</a>
+      </li>
+      <li *ngIf="isLoggedIn" class="nav-item">
+        <a class="nav-link" (click)="logout()">Logout</a>
+      </li>
+    </ul>
+
+    
+  </div>
+  </nav>
+
+  <div *ngIf="lunch == null" class="row">
   <lottie-animation-view [options]="lottieConfig" [width]="300" [height]="600" (animCreated)="handleAnimation($event)">
   </lottie-animation-view>
   <!--<div id="player">
@@ -12,6 +33,7 @@
                 <button (click)="play()">play</button>
               </div>-->
 </div>
+
 
 <div *ngIf="lunch" class="top_home text-center">
   <!--<div class="col-md-6 offset-md-3 offset-sm-1">-->

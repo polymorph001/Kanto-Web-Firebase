@@ -15,6 +15,8 @@ import { MomentModule } from 'angular2-moment';
 import { TypeaheadModule } from 'ng2-bootstrap/typeahead';
 import { DropdownModule } from 'ng2-bootstrap/dropdown';
 import { AlertModule } from 'ng2-bootstrap/alert';
+import { CollapseModule } from 'ng2-bootstrap/collapse';
+
 
 import { UsersServices } from './services/users.service';
 
@@ -49,7 +51,7 @@ const firebaseAuthConfig = {
     DropdownModule.forRoot(), ButtonsModule.forRoot(), AlertModule.forRoot(),
     ModalModule.forRoot(),
     LoadingAnimateModule.forRoot(),
-    LottieAnimationViewModule.forRoot()
+    LottieAnimationViewModule.forRoot(), CollapseModule.forRoot()
   ],
   declarations: [ AppComponent, HomeComponent, AboutComponent, EmployeesComponent, CreateLunchComponent,
     TestComponent, RoundPipe, LoginComponent ],

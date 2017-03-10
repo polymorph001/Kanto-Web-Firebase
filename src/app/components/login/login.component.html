@@ -5,9 +5,9 @@
 </div>
 
 <div class="modal-dialog">
-  <div class="loginmodal-container">
-    <h1>Login to Kanto</h1><br>
-
+  <div class="loginmodal-container text-center">
+     <img src="assets/images/ic_welcome.png" alt="Kanto Club" class="img_home"><br />
+<div class="jumbotron text-center">
     <form role="form" (submit)="login($event, email.value, password.value)">
       <div class="form-group">
         <label for="email" class="sr-only">Email address</label>
@@ -19,7 +19,8 @@
       </div>
       <button class="btn btn-md btn-primary btn-block" type="submit">Sign in</button>
     </form>
-    <td [hidden]="!authed">Successfully logged in!</td>
-    <td [hidden]="authed">Not logged in</td>
+    <!--<td [hidden]="!authed">Successfully logged in!</td>
+    <td [hidden]="authed">Not logged in</td>-->
+    </div>
   </div>
 </div>
