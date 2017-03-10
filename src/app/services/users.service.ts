@@ -9,6 +9,7 @@ export class UsersServices {
   public email: string;
   public uid: string;
   public userInfo: any;
+  public isLoggedIn: boolean;
 
   constructor(public af: AngularFire) {
     this.af.auth.subscribe(

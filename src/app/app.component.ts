@@ -9,7 +9,6 @@ import { Router } from "@angular/router";
 })
 
 export class AppComponent {
-  public isLoggedIn: boolean;
 
   constructor(public usersServices: UsersServices, private router: Router) {
     // This asynchronously checks if our user is logged it and will automatically
@@ -20,7 +19,7 @@ export class AppComponent {
          if(auth == null) {
            console.log("Not Logged in.");
 
-           this.isLoggedIn = false;
+           this.usersServices.isLoggedIn = false;
            this.router.navigate(['login']);
          }
          else {
@@ -37,7 +36,7 @@ export class AppComponent {
               this.usersServices.userInfo = userInfo;
             });
 
-           this.isLoggedIn = true;
+           this.usersServices.isLoggedIn = true;
            //this.router.navigate(['']);
          }
        }

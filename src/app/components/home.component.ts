@@ -12,11 +12,11 @@ export enum LunchState {unknown = 1, accepted = 2, rejected = 3}
 export class HomeComponent {
 
   public isCollapsed:boolean = true;
- 
+
   public collapsed(event:any):void {
     console.log(event);
   }
- 
+
   public expanded(event:any):void {
     console.log(event);
   }
@@ -62,14 +62,16 @@ export class HomeComponent {
           // List iterate
           this.lunch.rUsers = [];
             for (var i =0; i < this.lunch.users.length; i++) {
-            //for(let user of lunch.users){
-              let user = this.lunch.users[i];
+            let user = this.lunch.users[i];
+            if (user.accept) {
+
               this.usersServices.getUserInfo(user.userId)
               .subscribe((u) => {
                   console.log(u)
                   this.lunch.rUsers.push(u);
                   //this.lunch.users[i] = u
               });
+            }
             }
         });
 
