@@ -42,6 +42,8 @@ export class HomeComponent {
           return this.usersServices.getUserForKey(lunch.userId)
             .map(user => {
               lunch.chef = user;
+              // Check if I'm the one cooking
+              lunch.meCooking = (user.uid == this.usersServices.uid);
               return lunch;
           });
         })

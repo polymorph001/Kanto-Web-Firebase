@@ -25,20 +25,24 @@
             </p>
           </div>
           <hr/>
-          <p class="card-text">Will you be attending?</p>
-          <div [ngSwitch]="lunchState">
-            <div *ngSwitchCase="LunchState.unknown">
-              <a href="#" (click)="acceptLunchInvite()" class="card-link">Yes</a>
-              <a href="#" (click)="rejectLunchInvite()" class="card-link">No</a>
-            </div>
-            <div *ngSwitchCase="LunchState.accepted">
-              <p class="card-text">YES</p>
-            </div>
-            <div *ngSwitchCase="LunchState.rejected">
-              <p class="card-text">NO</p>
+          <div *ngIf="lunch.meCooking">
+            <div class="card-text"><h1>You are Cooking!</h1></div>
+          </div>
+          <div *ngIf="!lunch.meCooking">
+            <p class="card-text">Will you be attending?</p>
+            <div [ngSwitch]="lunchState">
+              <div *ngSwitchCase="LunchState.unknown">
+                <a href="#" (click)="acceptLunchInvite()" class="card-link">Yes</a>
+                <a href="#" (click)="rejectLunchInvite()" class="card-link">No</a>
+              </div>
+              <div *ngSwitchCase="LunchState.accepted">
+                <p class="card-text">YES</p>
+              </div>
+              <div *ngSwitchCase="LunchState.rejected">
+                <p class="card-text">NO</p>
+              </div>
             </div>
           </div>
-
           <div class="card-footer text-muted">
             Event in: {{ (lunch.date | amDifference: today :'days' : true) | round }} days
         </div>
