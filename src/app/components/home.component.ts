@@ -51,9 +51,9 @@ export class HomeComponent {
           // Check what logged in user accept/reject state is
           this.lunchState = LunchState.unknown;
           if (lunch.users != null && lunch.users.length > 0) {
-            let me = lunch.users.find(e => e.userId == this.usersServices.uid);
-            if (me != null) {
-              this.lunchState = me.accept ? LunchState.accepted : LunchState.rejected;
+            lunch.me = lunch.users.find(e => e.userId == this.usersServices.uid);
+            if (lunch.me != null) {
+              this.lunchState = lunch.me.accept ? LunchState.accepted : LunchState.rejected;
             }
           }
           return lunch;
@@ -71,12 +71,12 @@ export class HomeComponent {
 
   rejectLunchInvite() {
     // Mark in DB Reject
-    this.lunchService.rejectLunchInvite(this.lunch, this.usersServices.uid);
+    this.lunchService.rejectLunchInvite(this.lunch, this.lunch.me, this.usersServices.uid);
   }
 
   acceptLunchInvite() {
     // Mark in DB accept
-    this.lunchService.acceptLunchInvite(this.lunch, this.usersServices.uid);
+    this.lunchService.acceptLunchInvite(this.lunch, this.lunch.me, this.usersServices.uid);
   }
 
    handleAnimation(anim: any) {
