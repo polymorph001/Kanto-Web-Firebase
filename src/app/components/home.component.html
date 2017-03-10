@@ -1,6 +1,25 @@
 <nav class="navbar navbar-toggleable-md navbar-inverse sticky-top">
+
+<img (click)="isCollapsed = !isCollapsed" src="/assets/images/pictureprofile.svg" width="30" height="30" class="d-inline-block align-top  text-right"
+    alt="" />
+<div (collapsed)="collapsed($event)"
+     (expanded)="expanded($event)"
+     [collapse]="isCollapsed"
+     class="row">
+  <div>
+<ul class="nav navbar-nav navbar-right">
+      <li class="nav-item">
+         <a class="nav-link" href="#">Welcome {{ (usersServices.userInfo)?.FirstName }} {{ (usersServices.userInfo)?.LastName }}</a>
+      </li>
+      <li  class="nav-item">
+        <a class="nav-link" (click)="logout()">Logout</a>
+      </li>
+    </ul>
+
+  </div>
+
   
-  <img (click)="isCollapsed = !isCollapsed" src="/assets/images/pictureprofile.svg" width="30" height="30" class="d-inline-block align-top  text-right"
+  <!--<img (click)="isCollapsed = !isCollapsed" src="/assets/images/pictureprofile.svg" width="30" height="30" class="d-inline-block align-top  text-right"
     alt="" />
 
   <div (collapsed)="collapsed($event)" (expanded)="expanded($event)" [collapse]="isCollapsed" class="row">
@@ -13,7 +32,7 @@
       <li *ngIf="isLoggedIn" class="nav-item">
         <a class="nav-link" (click)="logout()">Logout</a>
       </li>
-    </ul>
+    </ul>-->
 
     
   </div>

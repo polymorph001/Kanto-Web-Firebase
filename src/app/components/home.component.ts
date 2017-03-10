@@ -11,7 +11,7 @@ export enum LunchState {unknown = 1, accepted = 2, rejected = 3}
 })
 export class HomeComponent {
 
-  public isCollapsed:boolean = false;
+  public isCollapsed:boolean = true;
  
   public collapsed(event:any):void {
     console.log(event);
