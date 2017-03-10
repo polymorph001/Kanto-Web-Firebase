@@ -52,15 +52,16 @@ export class HomeComponent {
           // List iterate
           this.lunch.rUsers = [];
             for (var i =0; i < this.lunch.users.length; i++) {
-            //for(let user of lunch.users){
               let user = this.lunch.users[i];
-              this.usersServices.getUserInfo(user.userId)
-              .subscribe((u) => {
-                  console.log(u)
-                  this.lunch.rUsers.push(u);
-                  //this.lunch.users[i] = u
-              });
-              
+              if (user.accept) {
+                this.usersServices.getUserInfo(user.userId)
+                .subscribe((u) => {
+                    console.log(u)
+                    this.lunch.rUsers.push(u);
+                    //this.lunch.users[i] = u
+                });
+              }
+
             }
         });
 
