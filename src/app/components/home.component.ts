@@ -7,19 +7,6 @@ export enum LunchState {unknown = 1, accepted = 2, rejected = 3}
 @Component({
   selector: 'home',
   templateUrl: 'home.component.html',
-  styles: [`
-    #player{
-       text-align: center;
-    }
-    .range-container{
-      display: flex;
-      justify-content: center;
-    }
-    .range-container input{
-      width:200px;
-      margin-bottom: 10px;
-    }
-  `],
   providers: [ LunchService ]
 })
 export class HomeComponent {
@@ -28,6 +15,7 @@ export class HomeComponent {
   // allows you to use AgentStatus in template
   public LunchState = LunchState;
   public lunchState: LunchState = LunchState.unknown;
+  public attending: string = "";
 
   public lottieConfig: Object;
   private anim: any;
@@ -60,6 +48,20 @@ export class HomeComponent {
         })
         .subscribe((ll) => {
           this.lunch = ll;
+
+          // List iterate
+          this.lunch.rUsers = [];
+            for (var i =0; i < this.lunch.users.length; i++) {
+            //for(let user of lunch.users){
+              let user = this.lunch.users[i];
+              this.usersServices.getUserInfo(user.userId)
+              .subscribe((u) => {
+                  console.log(u)
+                  this.lunch.rUsers.push(u);
+                  //this.lunch.users[i] = u
+              });
+              
+            }
         });
 
         this.lottieConfig = {

@@ -29,7 +29,6 @@ export class UsersServices {
   logout() {
     return this.af.auth.logout();
   }
-
   getUsers() {
       return this.af.database.list('/users');
   }

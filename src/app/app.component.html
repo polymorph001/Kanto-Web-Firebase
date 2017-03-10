@@ -1,5 +1,5 @@
 <loading-animate></loading-animate>
-<nav class="navbar navbar-toggleable-md navbar-inverse sticky-top bg-primary">
+<!--<nav class="navbar navbar-toggleable-md navbar-inverse sticky-top bg-primary">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -17,7 +17,7 @@
         <a class="nav-link" routerLink="/employees">Employees</a>
       </li>
       <li *ngIf="isLoggedIn && (usersServices.userInfo)?.admin" class="nav-item">
-        <a class="nav-link" routerLink="/create-lunch">Create Lunch</a>
+        <a class="nav-link btn primary-btn" routerLink="/create-lunch">Create Lunch</a>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
@@ -29,7 +29,12 @@
       </li>
     </ul>
   </div>
-</nav>
-<div class="container-fluid">
+</nav>-->
+
   <router-outlet></router-outlet>
-</div>
+
+<footer>
+   <div *ngIf="isLoggedIn && (usersServices.userInfo)?.admin" class="nav-item">
+        <a class="nav-link btn primary-btn" routerLink="/create-lunch">Create Lunch</a>
+      </div>
+      </footer>

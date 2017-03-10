@@ -1,68 +1,7 @@
-<div class="container">
-  <div *ngIf="lunch == null" class="row">
-    <div class="col-md-6 offset-md-3">
-      <div class="card text-center">
-        <div class="card-block">
-          <h4 class="card-title">Loading...</h4>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div *ngIf="lunch" class="row">
-    <div class="col-md-6 offset-md-3 offset-sm-1">
-      <div class="card text-center">
-        <div class="card-img-top text-center">
-          <img  src="assets/images/ic_welcome.png" width="200px" height="100px" alt="Kanto Club">
-        </div>
-
-        <div class="card-block">
-          <h4 class="card-title">{{ lunch.chef.FirstName }} <small>will be cooking</small></h4>
-          <h6 class="card-subtitle mb-2 text-muted">Date: {{ lunch.date | amDateFormat: 'DD-MM-YYYY' }}</h6>
-          <div *ngIf="lunch.users.total > 0">
-            <p class="card-text">
-              {{ lunch.users.accepted }} users attending<br/>
-              {{ lunch.users.rejected }} users not attending
-            </p>
-          </div>
-          <hr/>
-          <div *ngIf="lunch.meCooking">
-            <div class="card-text"><h1>You are Cooking!</h1></div>
-          </div>
-          <div *ngIf="!lunch.meCooking">
-            <div class="card-text">Will you be attending?
-              <div [ngSwitch]="lunchState">
-                <div *ngSwitchCase="LunchState.unknown">
-                  <a href="#" (click)="acceptLunchInvite()" class="card-link">Yes</a>
-                  <a href="#" (click)="rejectLunchInvite()" class="card-link">No</a>
-                </div>
-                <div *ngSwitchCase="LunchState.accepted">
-                  <b>YES</b>
-                </div>
-                <div *ngSwitchCase="LunchState.rejected">
-                  <b>NO</b>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card-footer text-muted">
-            Event in: {{ (lunch.date | amDifference: today :'days' : true) | round }} days
-        </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<app-test></app-test>
-
-
-<lottie-animation-view
-                    [options]="lottieConfig"
-                    [width]="300"
-                    [height]="600"
-                    (animCreated)="handleAnimation($event)">
-              </lottie-animation-view>
-              <div id="player">
+<div *ngIf="lunch == null" class="row">
+  <lottie-animation-view [options]="lottieConfig" [width]="300" [height]="600" (animCreated)="handleAnimation($event)">
+  </lottie-animation-view>
+  <!--<div id="player">
                 <p>Speed: x{{animationSpeed}}</p>
                 <div class="range-container">
                   <input #range type="range" value="1" min="0" max="3" step="0.5"
@@ -71,4 +10,57 @@
                 <button (click)="stop()">stop</button>
                 <button (click)="pause()">pause</button>
                 <button (click)="play()">play</button>
-              </div>
+              </div>-->
+</div>
+
+<div *ngIf="lunch" class="top_home text-center">
+  <!--<div class="col-md-6 offset-md-3 offset-sm-1">-->
+  <!--<div class="text-center">-->
+  <!--<div class="img_top_home">-->
+  <img src="assets/images/ic_welcome.png" alt="Kanto Club" class="img_home">
+  <!--</div>-->
+
+  <div class="card-block">
+    <h4 class="card-title">{{ lunch.chef.FirstName }} <small>will be cooking</small></h4>
+    <h6 class="card-subtitle mb-2 text-muted">Date: {{ lunch.date | amDateFormat: 'DD-MM-YYYY' }}</h6>
+    <div *ngIf="lunch.users.total > 0">
+      <p class="attendance">
+        <img src="assets/images/excited.svg">{{ lunch.users.accepted }} people attending <br/> <img src="assets/images/unknown.svg">{{ lunch.users.rejected }} people not attending
+      <br />
+      <!--<button class="btn primary-btn">See all</button>-->
+      </p>
+<!--<div *ngIf="lunch.users.accepted.length > 0" >-->
+  <div>
+People Attending:
+ <ul *ngIf="lunch.rUsers != null">
+    <li *ngFor="let user of lunch.rUsers" >{{ user.FirstName }}</li>
+ </ul>
+</div>
+    </div>
+    <hr/>
+    <div *ngIf="lunch.meCooking">
+      <div class="card-text">
+        <h1>You are Cooking!</h1>
+      </div>
+    </div>
+    <div *ngIf="!lunch.meCooking">
+      <div class="card-text">Will you be attending?
+        <a href="#" (click)="acceptLunchInvite()" class="card-link">Yes</a>
+        <a href="#" (click)="rejectLunchInvite()" class="card-link">No</a>
+        <div [ngSwitch]="lunchState">
+          <div *ngSwitchCase="LunchState.accepted">
+            <b>YES</b>
+          </div>
+          <div *ngSwitchCase="LunchState.rejected">
+            <b>NO</b>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer text-muted">
+      Event in: {{ (lunch.date | amDifference: today :'days' : true) | round }} days
+    </div>
+  </div>
+</div>
+<!--</div>
+  </div>-->
