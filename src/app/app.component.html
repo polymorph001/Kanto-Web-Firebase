@@ -16,13 +16,13 @@
       <li *ngIf="isLoggedIn" class="nav-item">
         <a class="nav-link" routerLink="/employees">Employees</a>
       </li>
-      <li *ngIf="isLoggedIn" class="nav-item">
+      <li *ngIf="isLoggedIn && (usersServices.userInfo)?.admin" class="nav-item">
         <a class="nav-link" routerLink="/create-lunch">Create Lunch</a>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li *ngIf="isLoggedIn" class="nav-item">
-        <a class="nav-link" href="#">{{ usersServices.displayName }}</a>
+        <a class="nav-link" href="#">{{ (usersServices.userInfo)?.FirstName }} {{ (usersServices.userInfo)?.LastName }}</a>
       </li>
       <li *ngIf="isLoggedIn" class="nav-item">
         <a class="nav-link" (click)="logout()">Logout</a>

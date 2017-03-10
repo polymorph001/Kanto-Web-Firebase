@@ -71,7 +71,7 @@ export class HomeComponent {
 
   rejectLunchInvite() {
     // Mark in DB Reject
-    alert("NOT COOL MAN");
+    this.lunchService.rejectLunchInvite(this.lunch, this.usersServices.uid);
   }
 
   acceptLunchInvite() {

@@ -30,6 +30,13 @@ export class AppComponent {
            this.usersServices.email = auth.auth.email;
            this.usersServices.uid = auth.uid;
 
+           // Might needs this later
+           this.usersServices.getUserInfo(auth.uid)
+            .subscribe((userInfo) => {
+              console.log(userInfo);
+              this.usersServices.userInfo = userInfo;
+            });
+
            this.isLoggedIn = true;
            //this.router.navigate(['']);
          }

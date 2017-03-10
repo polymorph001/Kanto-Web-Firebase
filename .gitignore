@@ -4,6 +4,9 @@
 /dist
 /tmp
 
+# functions
+/functions/node_modules
+
 # dependencies
 /node_modules
 
@@ -15,9 +18,6 @@
 *.launch
 .settings/
 *.sublime-workspace
-
-*.js
-*.js.map
 
 # IDE - VSCode
 .vscode/*
