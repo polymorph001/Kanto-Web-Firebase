@@ -51,15 +51,22 @@ export class LunchService {
     })
   }
 
-  acceptLunchInvite(lunch: any, userId: any) {
-    this.updateLunchInvite(lunch, userId, true);
+  acceptLunchInvite(lunch: any, user: any, userId: string) {
+    return this.updateLunchInvite(lunch, user, userId, true);
   }
-  rejectLunchInvite(lunch: any, userId: any) {
-    this.updateLunchInvite(lunch, userId, false);
+  rejectLunchInvite(lunch: any, user: any, userId: string) {
+    return this.updateLunchInvite(lunch, user, userId, false);
   }
 
-  private updateLunchInvite(lunch: any, userId: any, accept: boolean) {
-    const lunches = this.af.database.list('/lunches/' + lunch.$key + '/users/');
-    lunches.push({ accept: accept, userId: userId });
+  private updateLunchInvite(lunch: any, user: any, userId: string, accept: boolean) {
+    console.log("updateLunchInvite: " + user);
+
+    const users = this.af.database.list('/lunches/' + lunch.$key + '/users/');
+
+    if (user == null) {
+      users.push({ accept: accept, userId: userId });
+    } else {
+      users.update(user.$key, { accept: accept });
+    }
   }
 }
