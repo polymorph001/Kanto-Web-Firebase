@@ -8,6 +8,7 @@ export class UsersServices {
   public displayName: string;
   public email: string;
   public uid: string;
+  public userInfo: any;
 
   constructor(public af: AngularFire) {
     this.af.auth.subscribe(
@@ -35,6 +36,20 @@ export class UsersServices {
 
   getUserForKey(key: string) {
     return this.af.database.object('/users/' + key);
+  }
+
+  getUserInfo(uid: string) {
+    return this.af.database.list('/users', {
+        query: {
+          orderByChild: 'uid',
+          equalTo: uid,
+          limitToLast: 1
+        }
+      })
+      .first()
+      .map((infos) => {
+        return infos == null ? null : infos[0];
+      });
   }
 
   insertAllEmployeesForTestingOnly() {

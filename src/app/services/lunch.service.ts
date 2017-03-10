@@ -52,8 +52,14 @@ export class LunchService {
   }
 
   acceptLunchInvite(lunch: any, userId: any) {
-    const lunches = this.af.database.list('/lunches/' + lunch.$key + '/users/');
-    lunches.push({ accept: true, userId: userId });
+    this.updateLunchInvite(lunch, userId, true);
+  }
+  rejectLunchInvite(lunch: any, userId: any) {
+    this.updateLunchInvite(lunch, userId, false);
+  }
 
+  private updateLunchInvite(lunch: any, userId: any, accept: boolean) {
+    const lunches = this.af.database.list('/lunches/' + lunch.$key + '/users/');
+    lunches.push({ accept: accept, userId: userId });
   }
 }
