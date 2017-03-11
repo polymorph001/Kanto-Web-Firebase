@@ -11,8 +11,11 @@
       <li class="nav-item">
          <a class="nav-link" href="#">Welcome {{ (usersServices.userInfo)?.FirstName }} {{ (usersServices.userInfo)?.LastName }}</a>
       </li>
-      <li  class="nav-item">
-        <a class="nav-link" (click)="usersServices.logout()">Logout</a>
+      <li *ngIf="usersServices.isLoggedIn && (usersServices.userInfo)?.admin" class="nav-item">
+          <a class="nav-link" routerLink="/create-lunch">Create Lunch</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" (click)="usersServices.logout()">Logout</a>
       </li>
     </ul>
 
@@ -103,8 +106,3 @@ People Attending:
     </div>
   </div>
 </div>
-<footer class="text-center">
-   <div *ngIf="usersServices.isLoggedIn && (usersServices.userInfo)?.admin" class="nav-item">
-        <a class="nav-link btn primary-btn" routerLink="/create-lunch">Create Lunch</a>
-    </div>
-</footer>
