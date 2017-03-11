@@ -103,5 +103,8 @@ People Attending:
     </div>
   </div>
 </div>
-<!--</div>
-  </div>-->
+<footer class="text-center">
+   <div *ngIf="usersServices.isLoggedIn && (usersServices.userInfo)?.admin" class="nav-item">
+        <a class="nav-link btn primary-btn" routerLink="/create-lunch">Create Lunch</a>
+    </div>
+</footer>
